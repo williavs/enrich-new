@@ -1,8 +1,9 @@
 import React from 'react';
 import { Player } from '@lottiefiles/react-lottie-player';
+import { EnrichedCompany, EnrichedCompanyData } from '../types';
 
 interface DataDisplayProps {
-  data: any[];
+  data: EnrichedCompany[] | EnrichedCompanyData;
   onEnrich: () => void;
 }
 

@@ -1,8 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { Providers } from '../components/Providers'
 
 export const metadata: Metadata = {
-  title: 'Data Enrichment Tool',
+  title: 'ITSTHELIST - Data Enrichment Tool',
   description: 'A tool for enriching company data',
 }
 
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }

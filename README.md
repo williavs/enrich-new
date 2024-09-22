@@ -1,27 +1,26 @@
-# 🚀 Company Enrichment Engine
-
-
+# 🚀 ITSTHELIST - Company Enrichment Engine
 
 ## 📊 Overview
 
-The Company Enrichment Engine is a powerful tool that combines Next.js, FastAPI, and AI to provide comprehensive insights about companies. Simply upload a CSV file with company names and websites, and our engine will enrich the data with valuable information!
+ITSTHELIST is a powerful company enrichment tool that combines Next.js, FastAPI, and AI to provide comprehensive insights about companies. It offers two main features: bulk company data enrichment and individual Ideal Customer Profile (ICP) generation.
 
 ### 🌟 Key Features
 
-- 📁 Easy CSV file upload and parsing
+- 📁 Easy CSV file upload for bulk company data enrichment
 - 🔍 AI-powered company research using GPT-4
+- 🎯 Individual company ICP generation
 - 🌐 Web scraping for up-to-date information via SearxNG
 - 📈 Real-time progress tracking with WebSocket
-- 📊 Interactive results display
+- 📊 Interactive results display with pagination and search
 
 ## 🛠️ Tech Stack
-
 
 - **Frontend**: Next.js 14 (App Router), React, TypeScript, Tailwind CSS
 - **Backend**: FastAPI, Python
 - **AI**: OpenAI GPT-4, LangChain
 - **Search**: SearxNG
-- **Data Processing**: Pandas
+- **Data Processing**: Pandas, Papaparse
+- **Animations**: Lottie
 
 ## 🚀 Getting Started
 
@@ -35,8 +34,8 @@ The Company Enrichment Engine is a powerful tool that combines Next.js, FastAPI,
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/company-enrichment-engine.git
-   cd company-enrichment-engine
+   git clone https://github.com/yourusername/itsthelist.git
+   cd itsthelist
    ```
 
 2. **Install frontend dependencies:**
@@ -68,23 +67,41 @@ The Company Enrichment Engine is a powerful tool that combines Next.js, FastAPI,
    In a new terminal, navigate to the backend directory:
    ```bash
    cd backend
-   uvicorn main:app --reload
+   uvicorn main:app --reload --port 8501
+   python icp.py
    ```
 
 6. **Access the application:**
    Open your browser and go to `http://localhost:3000`
 
-### Using the Application
+## 📋 Project Structure
 
-1. On the homepage, you'll see a file upload interface.
-2. Prepare a CSV file with columns for company names and websites.
-3. Click on the upload area or drag and drop your CSV file.
-4. The application will parse the CSV and display the data.
-5. Click the "Enrich Data" button to start the enrichment process.
-6. Watch the real-time progress as the AI researches each company.
-7. Once complete, view the enriched data in the interactive results table.
+- `src/app`: Contains the main page and layout components
+- `src/components`: React components for various UI elements
+- `src/utils`: Utility functions for API calls and animations
+- `src/types.ts`: TypeScript type definitions
+- `backend/`: FastAPI backend for bulk enrichment and ICP generation
 
+## 🖥️ Main Components
 
+- `FileUpload`: Handles CSV file upload and parsing
+- `ColumnMappingModal`: Allows users to map CSV columns to required fields
+- `ResultsTable`: Displays enriched company data with pagination and search
+- `CompanyInputForm`: Form for individual company ICP generation
+- `ICPDisplay`: Renders the generated ICP insights
+
+## 🔄 Data Flow
+
+1. User uploads a CSV file or enters individual company details
+2. Data is sent to the backend for processing
+3. AI-powered enrichment is performed using GPT-4 and web scraping
+4. Enriched data is returned to the frontend and displayed in the ResultsTable or ICPDisplay
+
+## 🛠️ Customization
+
+- Modify `src/components/WelcomeModal.tsx` to update the welcome message
+- Adjust the styling in `src/app/globals.css` for global styles
+- Update API endpoints in `src/utils/api.ts` if backend URLs change
 
 ## 📄 License
 
@@ -95,10 +112,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [OpenAI](https://openai.com/) for their powerful GPT models
 - [LangChain](https://github.com/hwchase17/langchain) for simplifying AI interactions
 - [SearxNG](https://github.com/searxng/searxng) for providing a privacy-respecting search engine
-- [Unsplash](https://unsplash.com/) for the beautiful images used in this README
+- [Lottie](https://airbnb.design/lottie/) for beautiful animations
 
 ---
 
 <p align="center">
-  Made with ❤️ by Your Team Name
+  Made with ❤️ by ITSTHELIST Team
 </p>

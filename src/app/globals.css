@@ -2,4 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Your custom styles go here */
+body {
+  @apply bg-blue-50 text-gray-900;
+}
+
+/* Add any other global styles here */
+
+/* Custom utility class */

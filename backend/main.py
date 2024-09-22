@@ -5,7 +5,7 @@ from typing import Any, Dict, List
 import io
 import pandas as pd
 from dotenv import load_dotenv
-from fastapi import FastAPI, UploadFile, File, Form, WebSocket
+from fastapi import FastAPI, UploadFile, File, Form, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from langchain.agents import AgentExecutor, create_openai_functions_agent
 from langchain.tools import StructuredTool
@@ -77,13 +77,10 @@ async def process_company_data(company_data: Dict[str, Any]) -> Dict[str, Any]:
         return {**company_data, "Enriched_Data": result["output"]}
 
 async def process_companies(companies: List[Dict[str, Any]], websocket: WebSocket) -> List[Dict[str, Any]]:
-    total = len(companies)
-    results = []
-    for i, company in enumerate(companies):
-        result = await process_company_data(company)
-        results.append(result)
-        progress = ((i + 1) / total) * 100
-        await websocket.send_json({"progress": progress, "processed": i + 1, "total": total})
+    async def process_company(company):
+        return await process_company_data(company)
+
+    results = await asyncio.gather(*[process_company(company) for company in companies])
     return results
 
 @app.websocket("/ws")
@@ -98,6 +95,7 @@ async def websocket_endpoint(websocket: WebSocket):
                 await websocket.send_json({"type": "enrichment_complete", "data": enriched_data})
     except WebSocketDisconnect:
         print("WebSocket disconnected")
+        # Add any cleanup logic here if needed
 
 @app.post("/enrich")
 async def enrich_companies(company_data: CompanyData):
