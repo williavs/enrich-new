@@ -13,6 +13,25 @@ ITSTHELIST is a powerful company enrichment tool that combines Next.js, FastAPI,
 - 📈 Real-time progress tracking with WebSocket
 - 📊 Interactive results display with pagination and search
 
+## 🔍 SearXNG Integration
+
+ITSTHELIST uses SearXNG, a privacy-respecting metasearch engine that runs in the docker. To use ITSTHELIST, you need to set up a local instance of SearXNG:
+
+1. Clone the SearXNG Docker repository:
+   ```bash
+   git clone https://github.com/searxng/searxng-docker.git
+   cd searxng-docker
+   ```
+
+2. Follow the setup instructions in the SearXNG Docker README.
+
+3. Once SearXNG is running, update your ITSTHELIST `.env` file:
+   ```
+   SEARXNG_URL=http://localhost:8080
+   ```
+
+For more details, visit the [SearXNG Docker repository](https://github.com/searxng/searxng-docker).
+
 ## 🛠️ Tech Stack
 
 - **Frontend**: Next.js 14 (App Router), React, TypeScript, Tailwind CSS

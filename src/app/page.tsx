@@ -12,6 +12,7 @@ import ColumnMappingModal from '../components/ColumnMappingModal';
 import ICPDisplay from '../components/ICPDisplay';
 import WelcomeModal from '../components/WelcomeModal';
 import ResultsTable from '../components/ResultsTable';
+import ICPInsightsModal from '../components/ICPInsightsModal';
 
 export default function Home() {
   const [uploadedCompanies, setUploadedCompanies] = useState<EnrichedCompany[]>([]);
@@ -26,6 +27,7 @@ export default function Home() {
   const [initialMapping, setInitialMapping] = useState<{ companyName: string; website: string }>({ companyName: '', website: '' });
   const [isUploadComplete, setIsUploadComplete] = useState(false);
   const [isWelcomeModalOpen, setIsWelcomeModalOpen] = useState(false);
+  const [showICPInsightsModal, setShowICPInsightsModal] = useState(false);
 
   useEffect(() => {
     if (!isUploading && uploadedCompanies.length > 0) {
@@ -92,6 +94,7 @@ export default function Home() {
     try {
       const response = await enrichCompany(data);
       setIcpEnrichedData(response);
+      // Don't show the modal immediately, wait for user to click the button
     } catch (err) {
       console.error(err);
     }
@@ -166,6 +169,14 @@ export default function Home() {
                 <CompanyInputForm 
                   onSubmit={handleIcpSubmit}
                 />
+                {icpEnrichedData && icpEnrichedData.enriched_data && (
+                  <button
+                    onClick={() => setShowICPInsightsModal(true)}
+                    className="mt-4 w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+                  >
+                    View Market Insights
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -176,9 +187,6 @@ export default function Home() {
             {isEnriching && <EnrichmentProgress progress={enrichmentProgress} />}
             {enrichedCompanies.length > 0 && (
               <ResultsTable results={enrichedCompanies} />
-            )}
-            {icpEnrichedData && icpEnrichedData.enriched_data && (
-              <ICPDisplay data={icpEnrichedData.enriched_data} />
             )}
           </div>
         </div>
@@ -195,6 +203,13 @@ export default function Home() {
           initialMapping={initialMapping}
           onComplete={handleColumnMappingComplete}
           onClose={() => setShowColumnMappingModal(false)}
+        />
+      )}
+
+      {showICPInsightsModal && icpEnrichedData && icpEnrichedData.enriched_data && (
+        <ICPInsightsModal
+          data={icpEnrichedData.enriched_data}
+          onClose={() => setShowICPInsightsModal(false)}
         />
       )}
     </div>
