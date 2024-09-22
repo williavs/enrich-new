@@ -1,6 +1,6 @@
 # 🚀 Company Enrichment Engine
 
-![Company Enrichment Banner](https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)
+
 
 ## 📊 Overview
 
@@ -16,7 +16,6 @@ The Company Enrichment Engine is a powerful tool that combines Next.js, FastAPI,
 
 ## 🛠️ Tech Stack
 
-![Tech Stack](https://miro.medium.com/max/1400/1*k0SazfSJ-tPSBbt2WDYIyw.png)
 
 - **Frontend**: Next.js 14 (App Router), React, TypeScript, Tailwind CSS
 - **Backend**: FastAPI, Python
