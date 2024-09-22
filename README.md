@@ -17,7 +17,7 @@ ITSTHELIST is a powerful company enrichment tool that combines Next.js, FastAPI,
 
 - **Frontend**: Next.js 14 (App Router), React, TypeScript, Tailwind CSS
 - **Backend**: FastAPI, Python
-- **AI**: OpenAI GPT-4, LangChain
+- **AI**: OpenAI GPT-4o, LangChain
 - **Search**: SearxNG
 - **Data Processing**: Pandas, Papaparse
 - **Animations**: Lottie
